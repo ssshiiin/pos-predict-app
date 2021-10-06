@@ -15,6 +15,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
+Route::get('/dashboard/profit', function () {
+    return view('profit');
+});
+
 // Route::get('/', function () {
 //     return view('index');
 // });
