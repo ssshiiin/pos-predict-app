@@ -14,27 +14,18 @@
         <!-- Styles -->
     </head>
     <body>
-        profit
+      <h2>csv form</h2>
+      <form method="POST" action="/csvs/register" enctype="multipart/form-data" >
+        @csrf
         <div>
-            日曜日 : {{$data["sun"]}}
+          <label for="caption">caption</label>
+          <input type="text" id="caption" name="caption">
         </div>
         <div>
-            月曜日 : {{$data["mon"]}}
+          <label for="csv">csv</label>
+          <input type="file" id="file" name="file[]" multiple>
         </div>
-        <div>
-            火曜日 : {{$data["thu"]}}
-        </div>
-        <div>
-            水曜日 : {{$data["wed"]}}
-        </div>
-        <div>
-            木曜日 : {{$data["thr"]}}
-        </div>
-        <div>
-            金曜日 : {{$data["fri"]}}
-        </div>
-        <div>
-            土曜日 : {{$data["sat"]}}
-        </div>
+        <input type="submit" value="送信する">
+        </form>
     </body>
 </html>
