@@ -22,12 +22,8 @@
           <input type="text" id="caption" name="caption">
         </div>
         <div>
-          <label for="date">date</label>
-          <input type="date" id="date" name="date">
-        </div>
-        <div>
           <label for="csv">csv</label>
-          <input type="file" id="csv" name="csv">
+          <input type="file" id="file" name="file[]" multiple>
         </div>
         <input type="submit" value="送信する">
         </form>

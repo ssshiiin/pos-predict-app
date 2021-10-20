@@ -15,24 +15,31 @@ class CsvsController extends Controller
 
     public function create(Request $request){
         $caption = $request->caption;
-        $date = $request->date;
-        $csv = $request->file("csv");
-        
-        $path = Storage::disk('s3')->putFileAs('/CsvTest', $csv, $date . '.csv', 'public');
-        
-        Csv::create([
-            "caption" => $caption,
-            "aws_csv_path" => Storage::disk('s3')->url($path),
-            "date" => $date
-        ]);
+        $files = $request->file("file");
+
+        foreach($files as $file) {
+            $file_name = $file->getClientOriginalName();
+
+            $path = Storage::disk('s3')->putFileAs('/CsvTest', $file, $file_name, 'public');
+
+            Csv::create([
+                "caption" => $caption,
+                "aws_path" => Storage::disk('s3')->url($path),
+            ]);
+        }
     }
 
     public function show(){
-        // $s3_file = File::get("https://pos-predict-app.s3.ap-northeast-1.amazonaws.com/CsvTest/DpobyIHPoRRhagSMYCVC9DO3EfOtuF5V68MeBOsQ.txt");
-        // dd($s3_file);
         $script = resource_path() . "/python/testReadCsv.py";
+        $params = "";
+        foreach(Csv::all() as $file) {
+            $params = $params . $file->aws_path . ",";
+        }
 
-        exec("python" . " " . $script, $output);
+        $command = "python" . " " . $script . " ". $params;
+
+
+        exec($command, $output);
         dump($script);
         dd($output);
     }

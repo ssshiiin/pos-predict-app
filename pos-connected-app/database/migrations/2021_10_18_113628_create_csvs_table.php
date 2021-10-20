@@ -16,8 +16,7 @@ class CreateCsvsTable extends Migration
         Schema::create('csvs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string("caption");
-            $table->string("aws_csv_path");
-            $table->date('date');
+            $table->string("aws_path");
             $table->timestamps();
         });
     }

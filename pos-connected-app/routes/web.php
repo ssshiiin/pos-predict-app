@@ -15,9 +15,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
-Route::get('/dashboard/profit', function () {
-    return view('profit');
-});
+Route::get('/dashboard/profit', "ProfitController@index");
 
 //csv upload test
 Route::get('/dashboard/register', "CsvsController@index");
