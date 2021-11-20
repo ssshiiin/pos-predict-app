@@ -4,7 +4,7 @@ import sys
 # import boto3
 # import os
 # import io
-import week
+from week import week
 
 
 
@@ -15,8 +15,10 @@ def main():
   params = args[1].split(",")
   csvs = []
   for i in params:
+    if (i == ""):
+      continue
     csvs.append(i)
-  
+
   week(csvs)
 
 

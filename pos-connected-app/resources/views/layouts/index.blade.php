@@ -21,61 +21,76 @@
 </head>
 <body>
   <?php $navs = [
-    ['url' => 'ダッシュボード', 'label' => 'Dashboard'], 
-    ['url' => 'カート', 'label' => 'Product'], 
-    ['url' => 'カート', 'label' => 'Order'], 
-    ['url' => '資料', 'label' => 'File Upload'], 
-    ['url' => '資料', 'label' => 'Previous Data'], 
-    ['url' => '資料', 'label' => 'Setting'], 
+    ['url' => '/dashboard', 'label' => 'Dashboard', 'img' => 'dashboard'], 
+    ['url' => '/dashboard/product', 'label' => 'Product', 'img' => 'order'], 
+    ['url' => '/dashboard/order', 'label' => 'Order', 'img' => 'order'], 
+    ['url' => '/dashboard/register', 'label' => 'File Upload', 'img' => 'upload'], 
+    ['url' => '/dashboard/previous', 'label' => 'Previous Data', 'img' => 'upload'], 
+    ['url' => '/dashboard/setting', 'label' => 'Setting', 'img' => 'setting'], 
     ]; ?>
   <nav id="drawer" class="drawer">
     <div>
-      <button id="drawerButton">
+      <button id="drawerButton" class="drawer__button">
         close
       </button>
     </div>
     <div class="drawer__nav">
       <ul>
+        <div class="line"></div>
         @foreach ($navs as $nav)
         <li class="drawer__nav__item">
-          <span class="drawer__nav__item__center">
-            <img src="{{ asset('images/' . $nav['url'] . '.png')}}" class="drawer__nav__item__center__img"/>
-          </span>
-          <span class="drawer__nav__item__label">{{$nav['label']}}</span>
+          <a href={{$nav["url"]}} >
+            <span class="drawer__nav__item__center">
+              <img src="{{ asset('images/' . $nav['img'] . '.png')}}" class="drawer__nav__item__center__img"/>
+            </span>
+            <span class="drawer__nav__item__label">{{$nav['label']}}</span>
+          </a>
         </li>
+        @if($nav['label'] == 'Order')
+        <div class="line"></div>
+        @endif
         @endforeach
       </ul>
     </div>
   </nav>
-  <main>
-    <header id="header" class="header__short">
-      <span>
-        DashBoard
-      </span>
-    </header>
-    <div class="main-category">
-      @yield('content')
+  <header id="header" class="header header__close">
+    <div>
+      <button id="headerButton" class="header__button">
+        open
+      </button>
     </div>
+    <span>
+      DashBoard
+    </span>
+  </header>
+  <main id="main" class="main main__close">
+      @yield('content')
   </main>
   <script>
     let drawer = document.getElementById('drawer');
     let drawerButton = document.getElementById('drawerButton');
-
-    const isOpenDrawer = (dEle) => {
-      const dClass = dEle.classList;
-      console.log(dClass)
-
-      if(!(dClass in 'drawer__close')){
-        console.log("true")
-        dEle.classList.add('drawer__close');
+    let header = document.getElementById('header');
+    let headerButton = document.getElementById('headerButton');
+    let main = document.getElementById('main');
+    
+    const isOpenDrawer = () => {
+      const drawerClass = drawer.classList;
+      const headerClass = header.classList;
+      const mainClass = main.classList;
+      
+      if(drawerClass.length == 1){
+        drawerClass.add('drawer__close');
+        headerClass.remove('header__close');
+        mainClass.remove('main__close');
       } else {
-        dEle.classList.remove('drawer__close');
+        drawerClass.remove('drawer__close');
+        headerClass.add('header__close');
+        mainClass.add('main__close');
       }
     }
 
-
-
-    drawerButton.addEventListener('click', () => isOpenDrawer(drawer), false);
+    drawerButton.addEventListener('click', () => isOpenDrawer(), false);
+    headerButton.addEventListener('click', () => isOpenDrawer(), false);
   </script>
 </body>
 </html>

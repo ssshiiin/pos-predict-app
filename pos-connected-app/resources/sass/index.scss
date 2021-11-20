@@ -27,26 +27,28 @@ body {
 
 .drawer {
     position: fixed;
+    width: 250px;
     height: 100vh;
     border-right: 1px solid $border-color;
     background-color: white;
-    transition: all 300ms 0s ease-in-out;
-    width: 300px;
+    transition: all 200ms 0s ease-in-out;
     top: 0;
 
-    &__close {
-        @extend .drawer;
-        top: 60px;
-        width: 60px;
-        & .drawer__nav__item__label {
-            display: none;
-        }
+    &__button {
+        width: 100%;
+        height: 60px;
+        background-color: white;
+        border: none;
     }
 
     &__nav {
-        position: absolute;
-        top: 60px;
+        width: 100%;
+        padding-top: 0;
+        & a {
+            display: flex;
+        }
         &__item {
+            margin-top: 20px;
             display: flex;
             margin-bottom: 20px;
             &__center {
@@ -54,35 +56,42 @@ body {
                 flex-direction: column;
                 justify-content: center;
                 &__img {
-                    width: 35px;
+                    margin: 15px 17px 19px;
+                    width: 26px;
                     height: auto;
-                    margin: 0 7px;
                 }
             }
 
             &__label {
-                margin: 0 10px;
                 line-height: 60px;
                 height: 60px;
-                font-size: 22px;
-                color: $sub-header;
+                color: white;
+                font-size: 16px;
                 font-weight: 400;
+                color: $sub-header;
             }
+        }
+    }
+
+    &__close {
+        @extend .drawer;
+        width: 60px;
+        .drawer__nav {
+            padding-top: 60px;
+        }
+        .drawer__nav__item__label {
+            display: none;
+        }
+
+        .drawer__button {
+            display: none;
         }
     }
 }
 
-main {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-header {
+.header {
     display: flex;
     position: fixed;
-    flex-direction: column;
-    justify-content: center;
     height: 60px;
     width: 100%;
     background-color: $primary-main;
@@ -93,10 +102,57 @@ header {
         color: white;
         font-size: 20px;
         font-weight: 400;
+        line-height: 60px;
+    }
+
+    &__button {
+        width: 60px;
+        height: 60px;
+        background-color: $primary-main;
+        border: none;
+        color: white;
+    }
+
+    &__close {
+        @extend .header;
+        width: calc(100% - 250px);
+        margin-left: 250px;
+        transition: all 200ms 0s ease-in-out;
+        .header__button {
+            display: none;
+        }
     }
 }
 
-.main-category {
+.main {
     width: 100%;
-    height: 100vh;
+    height: calc(100vh - 60px);
+    padding-top: 60px;
+    transition: all 200ms 0s ease-in-out;
+    margin-left: 60px;
+    &__close {
+        @extend .main;
+        margin-left: 250px;
+        width: calc(100% - 250px);
+    }
+}
+
+.line {
+    height: 1px;
+    width: 100%;
+    background-color: #e0e0e0;
+}
+
+.product {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    &__chart {
+        margin-top: 20px;
+        width: 45%;
+        height: auto;
+        background-color: white;
+        border-radius: 6px;
+        box-shadow: $box-shadow;
+    }
 }

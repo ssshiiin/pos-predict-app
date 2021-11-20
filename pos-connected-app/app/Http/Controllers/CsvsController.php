@@ -37,7 +37,7 @@ class CsvsController extends Controller
         return redirect('/dashboard/register');
     }
 
-    public function show(){
+    public function showProductWeek(){
         $script = resource_path() . "/python/testReadCsv.py";
         $params = "";
         foreach(Csv::all() as $file) {
@@ -48,8 +48,21 @@ class CsvsController extends Controller
 
 
         exec($command, $output);
-        dump($script);
-        dd($output);
+        $products = array();
+        foreach($output as $item) {
+            $product = explode(" ", $item);
+            $products[$product[0]] = [
+                "product" => $product[0],
+                "mon" => (float)$product[1],
+                "thu" => (float)$product[2],
+                "thr" => (float)$product[3],
+                "wed" => (float)$product[4],
+                "fri" => (float)$product[5],
+                "sat" => (float)$product[6],
+                "sun" => (float)$product[7]
+            ];
+        };
+        return view("product", ["data" => $products]);
     }
 
 

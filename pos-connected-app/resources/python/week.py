@@ -1,22 +1,24 @@
 import numpy as np
-import matplotlib.pyplot as plt
 import pandas as pd
 import statsmodels.api as sm
+import math 
 
 def week(csvs):
     df = pd.DataFrame()
-    week = ["月", "火", "水", "木", "金", "土", "日"]
 
     for i in csvs:
         tmp_df = pd.read_csv(i)
-        df = pd.concat([df, tmp_df]) 
+        df = pd.concat([df, tmp_df])     
     
     syo=list(set(df['商品名']))
     syo is np.nan
     lst=[]
+
     for i in syo:
         if not isinstance(i,float):
             lst.append(i)
+
+    # print(lst)
     #i曜日の各商品の売りあげ
     for i in lst:
         df_sold=df[df['商品名']==i]
