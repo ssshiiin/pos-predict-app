@@ -1,0 +1,102 @@
+@import "~bootstrap/scss/bootstrap";
+@import "variables";
+@import url("https://fonts.googleapis.com/css?family=Nunito");
+
+ul {
+    display: block;
+    list-style-type: none;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 0px;
+    li {
+        list-style: none;
+    }
+}
+
+* {
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-size: 16px;
+}
+
+body {
+    display: flex;
+    background-color: $back-color;
+}
+
+.drawer {
+    position: fixed;
+    height: 100vh;
+    border-right: 1px solid $border-color;
+    background-color: white;
+    transition: all 300ms 0s ease-in-out;
+    width: 300px;
+    top: 0;
+
+    &__close {
+        @extend .drawer;
+        top: 60px;
+        width: 60px;
+        & .drawer__nav__item__label {
+            display: none;
+        }
+    }
+
+    &__nav {
+        position: absolute;
+        top: 60px;
+        &__item {
+            display: flex;
+            margin-bottom: 20px;
+            &__center {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                &__img {
+                    width: 35px;
+                    height: auto;
+                    margin: 0 7px;
+                }
+            }
+
+            &__label {
+                margin: 0 10px;
+                line-height: 60px;
+                height: 60px;
+                font-size: 22px;
+                color: $sub-header;
+                font-weight: 400;
+            }
+        }
+    }
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+header {
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    justify-content: center;
+    height: 60px;
+    width: 100%;
+    background-color: $primary-main;
+    box-shadow: $box-shadow;
+
+    span {
+        margin-left: 40px;
+        color: white;
+        font-size: 20px;
+        font-weight: 400;
+    }
+}
+
+.main-category {
+    width: 100%;
+    height: 100vh;
+}

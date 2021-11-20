@@ -11,11 +11,19 @@
 |
 */
 
+Route::redirect('/', '/dashboard');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
 Route::get('/dashboard/profit', "ProfitController@index");
+Route::get('/dashboard/product', function () {
+    return view("product");
+});
+Route::get('/dashboard/order', function () {
+    return view("index");
+});
 
 //csv upload test
 Route::get('/dashboard/register', "CsvsController@index");

@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Csv extends Model
 {
-    protected $fillable = ["caption", "aws_path"];
+    protected $fillable = ["year", "month", "date", "aws_path"];
 }
