@@ -1,0 +1,158 @@
+@import "~bootstrap/scss/bootstrap";
+@import "variables";
+@import url("https://fonts.googleapis.com/css?family=Nunito");
+
+ul {
+    display: block;
+    list-style-type: none;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 0px;
+    li {
+        list-style: none;
+    }
+}
+
+* {
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-size: 16px;
+}
+
+body {
+    display: flex;
+    background-color: $back-color;
+}
+
+.drawer {
+    position: fixed;
+    width: 250px;
+    height: 100vh;
+    border-right: 1px solid $border-color;
+    background-color: white;
+    transition: all 200ms 0s ease-in-out;
+    top: 0;
+
+    &__button {
+        width: 100%;
+        height: 60px;
+        background-color: white;
+        border: none;
+    }
+
+    &__nav {
+        width: 100%;
+        padding-top: 0;
+        & a {
+            display: flex;
+        }
+        &__item {
+            margin-top: 20px;
+            display: flex;
+            margin-bottom: 20px;
+            &__center {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                &__img {
+                    margin: 15px 17px 19px;
+                    width: 26px;
+                    height: auto;
+                }
+            }
+
+            &__label {
+                line-height: 60px;
+                height: 60px;
+                color: white;
+                font-size: 16px;
+                font-weight: 400;
+                color: $sub-header;
+            }
+        }
+    }
+
+    &__close {
+        @extend .drawer;
+        width: 60px;
+        .drawer__nav {
+            padding-top: 60px;
+        }
+        .drawer__nav__item__label {
+            display: none;
+        }
+
+        .drawer__button {
+            display: none;
+        }
+    }
+}
+
+.header {
+    display: flex;
+    position: fixed;
+    height: 60px;
+    width: 100%;
+    background-color: $primary-main;
+    box-shadow: $box-shadow;
+
+    span {
+        margin-left: 40px;
+        color: white;
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 60px;
+    }
+
+    &__button {
+        width: 60px;
+        height: 60px;
+        background-color: $primary-main;
+        border: none;
+        color: white;
+    }
+
+    &__close {
+        @extend .header;
+        width: calc(100% - 250px);
+        margin-left: 250px;
+        transition: all 200ms 0s ease-in-out;
+        .header__button {
+            display: none;
+        }
+    }
+}
+
+.main {
+    width: 100%;
+    height: calc(100vh - 60px);
+    padding-top: 60px;
+    transition: all 200ms 0s ease-in-out;
+    margin-left: 60px;
+    &__close {
+        @extend .main;
+        margin-left: 250px;
+        width: calc(100% - 250px);
+    }
+}
+
+.line {
+    height: 1px;
+    width: 100%;
+    background-color: #e0e0e0;
+}
+
+.product {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    &__chart {
+        margin-top: 20px;
+        width: 45%;
+        height: auto;
+        background-color: white;
+        border-radius: 6px;
+        box-shadow: $box-shadow;
+    }
+}

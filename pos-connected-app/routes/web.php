@@ -11,16 +11,21 @@
 |
 */
 
+Route::redirect('/', '/dashboard');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
 Route::get('/dashboard/profit', "ProfitController@index");
+Route::get('/dashboard/product', "CsvsController@showProductWeek");
+Route::get('/dashboard/order', function () {
+    return view("index");
+});
 
 //csv upload test
 Route::get('/dashboard/register', "CsvsController@index");
 Route::post('/csvs/register', "CsvsController@create");
-Route::get('/csvs', "CsvsController@show");
 
 // Route::get('/', function () {
 //     return view('index');

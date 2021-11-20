@@ -1,19 +1,13 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.index')
+@section("content")
+        <div>
+            dashboard
+            <div>
+                <a href="/dashboard/profit">売上予測グラフページ</a>
+                <a href="/dashboard/product">商品ごとグラフページ</a>
+                <a href="/dashboard/order">発注予測ページ</a>
+                <a href="/dashboard/register">ファイルアップロードページ</a>
+            </div>
+        </div>
+@endsection
 
-        <title>Laravel</title>
-
-        <script src="{{ asset('js/app.js') }}" defer></script>
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
-
-        <!-- Styles -->
-    </head>
-    <body>
-        dashboard
-    </body>
-</html>
