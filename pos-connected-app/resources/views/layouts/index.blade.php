@@ -22,6 +22,7 @@
 <body>
   <?php $navs = [
     ['url' => '/dashboard', 'label' => 'Dashboard', 'img' => 'dashboard'], 
+    ['url' => '/dashboard/profit', 'label' => 'Profit', 'img' => 'order'], 
     ['url' => '/dashboard/product', 'label' => 'Product', 'img' => 'order'], 
     ['url' => '/dashboard/order', 'label' => 'Order', 'img' => 'order'], 
     ['url' => '/dashboard/register', 'label' => 'File Upload', 'img' => 'upload'], 
