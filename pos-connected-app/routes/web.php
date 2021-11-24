@@ -19,12 +19,11 @@ Route::get('/dashboard', function () {
 
 Route::get('/dashboard/profit', "ProfitController@index");
 Route::get('/dashboard/product', "CsvsController@showProductWeek");
-Route::get('/dashboard/order', function () {
-    return view("index");
-});
+Route::get('/dashboard/order', "CsvsController@showOrderProduct");
 
 //csv upload test
 Route::get('/dashboard/register', "CsvsController@index");
+Route::get('/dashboard/product/predict', "CsvsController@productPredict");
 Route::post('/csvs/register', "CsvsController@create");
 
 // Route::get('/', function () {

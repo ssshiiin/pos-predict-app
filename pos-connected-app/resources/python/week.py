@@ -9,7 +9,7 @@ def week(csvs):
     for i in csvs:
         tmp_df = pd.read_csv(i)
         df = pd.concat([df, tmp_df])     
-    
+
     syo=list(set(df['商品名']))
     syo is np.nan
     lst=[]
@@ -34,6 +34,7 @@ def week(csvs):
         res = mod.fit()
         
         const = res.pvalues['const']
+        category = df[df['商品名']==i].iloc[0]["部門名"]
         Mon = const + res.pvalues['week_月']
         Tue = const + res.pvalues['week_火']
         Wed = const + res.pvalues['week_水']
@@ -42,4 +43,4 @@ def week(csvs):
         Sat = const + res.pvalues['week_土']
         Sun = const + res.pvalues['week_日']
         
-        print(i,Mon,Tue,Wed,Thu,Fri,Sat,Sun)
+        print(i,category,Mon,Tue,Wed,Thu,Fri,Sat,Sun)

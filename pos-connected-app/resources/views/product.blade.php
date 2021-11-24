@@ -1,5 +1,11 @@
 @extends('layouts.index')
 @section("content")
+    <nav>
+        <h5>カテゴリー</h5>
+        @foreach($categories_index as $category) 
+            <a href={{"/dashboard/product" . "?category=" . $category["category"]}}>{{$category["category"]}}</a>
+        @endforeach
+    </nav>
     <ul class="product">
     @foreach($data as $item)
         <li class="product__chart">
