@@ -22,11 +22,10 @@
 <body>
   <?php $navs = [
     ['url' => '/dashboard', 'label' => 'Dashboard', 'img' => 'dashboard'], 
-    ['url' => '/dashboard/profit', 'label' => 'Profit', 'img' => 'order'], 
-    ['url' => '/dashboard/product', 'label' => 'Product', 'img' => 'order'], 
+    ['url' => '/dashboard/profit', 'label' => 'Profit', 'img' => 'analytics'], 
+    ['url' => '/dashboard/product', 'label' => 'Product', 'img' => 'menu'], 
     ['url' => '/dashboard/order', 'label' => 'Order', 'img' => 'order'], 
     ['url' => '/dashboard/register', 'label' => 'File Upload', 'img' => 'upload'], 
-    ['url' => '/dashboard/previous', 'label' => 'Previous Data', 'img' => 'upload'], 
     ['url' => '/dashboard/setting', 'label' => 'Setting', 'img' => 'setting'], 
     ]; ?>
   <nav id="drawer" class="drawer">
@@ -61,7 +60,7 @@
       </button>
     </div>
     <span>
-      DashBoard
+      サービス名
     </span>
   </header>
   <main id="main" class="main main__close">

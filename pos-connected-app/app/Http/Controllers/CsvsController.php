@@ -13,6 +13,8 @@ use Illuminate\Database\Eloquent\Builder;
 
 class CsvsController extends Controller
 {
+    public $weeks = ["sun", "mon", "thu", "wed", "thr", "fri", "sat"];
+
     public function index(){
         $uploaded_info = Csv::selectRaw("year, month, count(*) as count, max(date) as date")->groupByRaw("year, month")->get();
         return view('form.register', ["data" => $uploaded_info]);
@@ -60,6 +62,7 @@ class CsvsController extends Controller
         $date = $last_day->date;
 
         exec($command, $output);
+        // dd($output);
         $products = array();
         foreach($output as $item) {
             $predict_array = explode(" ", $item);
@@ -149,9 +152,16 @@ class CsvsController extends Controller
     public function showProductWeek(Request $request){
         $category = $request->input('category');
         $products = array();
-        $targetProducts = Product::whereHas('category', function (Builder $query) use ($category) {
-            $query->where('category', $category);
-        })->get();
+        if (is_null($category)) {
+            $category = Category::first()->category;
+            $targetProducts = Product::whereHas('category', function (Builder $query) use ($category) {
+                $query->where('category', $category);
+            })->get();
+        } else {
+            $targetProducts = Product::whereHas('category', function (Builder $query) use ($category) {
+                $query->where('category', $category);
+            })->get();
+        }
 
         foreach($targetProducts as $product) {
             $recentData = $product->productPredicts->sortByDesc("year")->sortByDesc("month")->sortBy("week_num");
@@ -171,7 +181,50 @@ class CsvsController extends Controller
     }
 
     public function showOrderProduct(){
-        return view("order", ["categories" => Category::with("products")->get()]);
+        // foreach(Product::all() as $product) {
+        //     if ($product->calculated_date != date("Y/m/d")) {
+        //         $week = (int)date("w");
+        //         $week_num = (int)((int)date("d") / 7) + 1;
+        //         $predict = $product->productPredicts->where("year", date("Y"))->where("month", date("m"))->where("week_num", $week_num)->where("week", $this->weeks[$week])->first();
+        //         $stock = $product->stock;
+        //         if ($stock - $predict->predict <= 0) {
+        //             $product->next_order = date("Y/m/d");
+        //             $product->calculated_date = date("Y/m/d");
+        //             $product->update();
+        //         }
+        //         else {
+        //             $product->next_order = "まだ";
+        //             $product->calculated_date = date("Y/m/d");
+        //             $product->update();
+        //         }
+        //     }
+        // }
+        // return view("order", ["categories" => Product::with("category")->get()->groupBy("category.category")]);
+        return view("order");
+    }
+
+    public function updateProduct(Request $request){
+        $products = $request->request;
+
+        foreach ($products as $product_name => $product_info) {
+            Product::where("product", $product_name)->update(["stock" => $product_info[0], "order_interval" => $product_info[1]]);
+        }
+    }
+
+    public function showSetting(){
+        return view("setting");
+    }
+
+    public function testDayPredict() {
+        $script = resource_path() . "/python/testReadCsv.py";
+        $params = "";
+        foreach(Csv::all() as $file) {
+            $params = $params . $file->aws_path . ",";
+        }
+
+        $command = "python" . " " . $script . " ". $params;
+        
+        exec($command, $output);
     }
 
 
