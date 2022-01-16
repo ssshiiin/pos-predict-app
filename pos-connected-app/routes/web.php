@@ -16,7 +16,7 @@ Route::redirect('/', '/dashboard');
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
-
+Route::get('/dashboard', "DashboardController@index");
 Route::get('/dashboard/profit', "ProfitController@index");
 Route::get('/dashboard/product', "CsvsController@showProductWeek");
 Route::get('/dashboard/order', "CsvsController@showOrderProduct");

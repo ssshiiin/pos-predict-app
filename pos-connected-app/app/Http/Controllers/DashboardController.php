@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ProfitController extends Controller
+class DashboardController extends Controller
 {
     public function index(){
         $week = [
@@ -17,7 +17,7 @@ class ProfitController extends Controller
             "sat" => 200000,
         ];
 
-        return view("profit", ["data" => $week]);
+        return view("dashboard", ["data" => $week]);
     }
     
     public function index2(){
@@ -36,8 +36,7 @@ class ProfitController extends Controller
             "dec" => 1800000,
         ];
 
-        return view("profit", ["data2" => $month]);
+        return view("dashboard", ["data2" => $month]);
     }
     
 }
-
