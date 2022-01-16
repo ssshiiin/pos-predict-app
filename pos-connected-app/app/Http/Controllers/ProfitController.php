@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 class ProfitController extends Controller
 {
     public function index(){
-        $week = [
+        $date = [
+            //week
             "sun" => 120000,
             "mon" => 70000,
             "tue" => 80000,
@@ -15,11 +16,26 @@ class ProfitController extends Controller
             "thu" => 80000,
             "fri" => 140000,
             "sat" => 200000,
+
+            //month
+            "jan" => 800000,
+            "feb" => 700000,
+            "mar" => 1000000,
+            "apr" => 2000000,
+            "may" => 1800000,
+            "jun" => 1400000,
+            "jul" => 900000,
+            "aug" => 1000000,
+            "sep" => 1200000,
+            "oct" => 1400000,
+            "nov" => 1600000,
+            "dec" => 1800000,
         ];
 
-        return view("profit", ["data" => $week]);
+        return view("profit", ["data" => $date]);
     }
     
+    /*
     public function index2(){
         $month = [
             "jan" => 800000,
@@ -38,6 +54,6 @@ class ProfitController extends Controller
 
         return view("profit", ["data2" => $month]);
     }
-    
+    */
 }
 

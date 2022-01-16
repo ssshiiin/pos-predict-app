@@ -18,6 +18,7 @@ Route::get('/dashboard', function () {
 });
 Route::get('/dashboard', "DashboardController@index");
 Route::get('/dashboard/profit', "ProfitController@index");
+//Route::get('/dashboard/profit', "ProfitController@index2");
 Route::get('/dashboard/product', "CsvsController@showProductWeek");
 Route::get('/dashboard/order', "CsvsController@showOrderProduct");
 

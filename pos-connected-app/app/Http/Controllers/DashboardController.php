@@ -18,6 +18,8 @@ class DashboardController extends Controller
         ];
 
         return view("dashboard", ["data" => $week]);
+
+        
     }
     
     public function index2(){
