@@ -20,6 +20,10 @@ Route::get('/dashboard', function () {
 Route::get('/dashboard/profit', "ProfitController@index");
 Route::get('/dashboard/product', "CsvsController@showProductWeek");
 Route::get('/dashboard/order', "CsvsController@showOrderProduct");
+Route::get('/dashboard/setting', "CsvsController@showSetting");
+
+// 商品の在庫などを更新
+Route::post('/products/update', "CsvsController@updateProduct");
 
 //csv upload test
 Route::get('/dashboard/register', "CsvsController@index");

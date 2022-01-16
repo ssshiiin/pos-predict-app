@@ -1,6 +1,7 @@
 @import "~bootstrap/scss/bootstrap";
 @import "variables";
 @import url("https://fonts.googleapis.com/css?family=Nunito");
+@import "base";
 
 ul {
     display: block;
@@ -44,13 +45,21 @@ body {
     &__nav {
         width: 100%;
         padding-top: 0;
-        & a {
-            display: flex;
-        }
         &__item {
             margin-top: 20px;
             display: flex;
             margin-bottom: 20px;
+            cursor: pointer;
+
+            & a {
+                width: 100%;
+                display: flex;
+                text-decoration: none;
+                &:hover {
+                    background-color: $hover-white;
+                }
+            }
+
             &__center {
                 display: flex;
                 flex-direction: column;
@@ -63,6 +72,7 @@ body {
             }
 
             &__label {
+                width: 100%;
                 line-height: 60px;
                 height: 60px;
                 color: white;
@@ -127,8 +137,8 @@ body {
 .main {
     width: 100%;
     height: calc(100vh - 60px);
-    padding-top: 60px;
-    transition: all 200ms 0s ease-in-out;
+    padding: 76px 16px 16px 16px;
+    // transition: all 200ms 0s ease-in-out;
     margin-left: 60px;
     &__close {
         @extend .main;
@@ -143,16 +153,175 @@ body {
     background-color: #e0e0e0;
 }
 
+.page_head {
+    font-size: 32px;
+    margin: 8px 0px 8px 16px;
+    padding-left: 8px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    border-left: 8px solid $primary-main;
+}
+
+.wrapper {
+    margin: 16px;
+    padding: 16px;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: $box-shadow;
+}
+
+.spacer {
+    &__vert {
+        &__4 {
+            padding: 2px;
+        }
+        &__8 {
+            padding: 8px;
+        }
+        &__16 {
+            padding: 16px;
+        }
+    }
+}
+
+.line {
+    &__vert {
+        height: 100%;
+        width: 1px;
+        background-color: $border-color;
+    }
+    &__hori {
+        height: 1px;
+        width: 100%;
+        background-color: $border-color;
+    }
+}
+
 .product {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     &__chart {
         margin-top: 20px;
-        width: 45%;
+        width: 47%;
         height: auto;
         background-color: white;
         border-radius: 6px;
         box-shadow: $box-shadow;
+    }
+    &::after {
+        content: "";
+        display: black;
+        width: 47%;
+    }
+}
+
+.order {
+    &__category {
+        color: $primary-main;
+    }
+    &__name {
+        color: black;
+        font-size: 16px;
+        width: 30%;
+    }
+    &__label {
+        color: black;
+        font-size: 14px;
+    }
+    &__table {
+        width: 100%;
+    }
+}
+
+.button {
+    background-color: $primary-main;
+    border: none;
+    color: white;
+    border-radius: 6px;
+    padding: 3px 10px;
+    &:hover {
+        background-color: $hover-main;
+    }
+}
+
+.flex {
+    display: flex;
+    &__row {
+        @extend .flex;
+        &__between {
+            @extend .flex__row;
+            justify-content: space-between;
+        }
+        &__center {
+            @extend .flex__row;
+            justify-content: center;
+        }
+        &__3_7 {
+            @extend .flex__row;
+            width: 100%;
+            & > div:first-child {
+                width: 30%;
+                line-height: 50px;
+            }
+            & > div:last-child {
+                width: 70%;
+                line-height: 50px;
+            }
+        }
+        &__3_3_3 {
+            @extend .flex__row;
+            width: 100%;
+            & > div {
+                width: calc(100% / 3);
+                line-height: 50px;
+            }
+        }
+    }
+    &__column {
+        @extend .flex;
+        flex-direction: column;
+        align-items: center;
+        &__between {
+            @extend .flex__column;
+            justify-content: space-between;
+            height: 100%;
+        }
+        &__center {
+            @extend .flex__column;
+        }
+    }
+}
+
+.dashboard {
+    &__profit {
+        &__head {
+            font-size: 24px;
+            color: $primary-main;
+            font-weight: 500;
+        }
+    }
+    &__top {
+        &__wrapper {
+            display: flex;
+            &__left {
+                width: 70%;
+            }
+            &__right {
+                width: 30%;
+                & > div {
+                    height: calc(100% - 32px);
+                }
+            }
+        }
+    }
+
+    &__middle {
+        &__wrapper {
+            display: flex;
+            height: 200px;
+            width: 100%;
+            overflow-x: scroll;
+        }
     }
 }

@@ -18,9 +18,8 @@ class CreateProductsTable extends Migration
             $table->bigInteger('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories');
             $table->string('product');
-            $table->string('order_interval')->nullable();
+            $table->string('order_quantity')->nullable();
             $table->string('stock')->nullable();
-            $table->string('next_order')->nullable();
             $table->timestamps();
         });
     }
