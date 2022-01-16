@@ -52,14 +52,24 @@
                 labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
                 datasets: [{
                     label: '週間売上',
-                    backgroundColor: 'dodgerblue',
-                    borderColor: 'royalblue',
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 0.2)',
+                    pointBackgroundColor: 'rgba(3,169,244,0.8)',
                     data: [{{$data["sun"]}}, {{$data["mon"]}}, {{$data["tue"]}}, {{$data["wed"]}}, {{$data["thu"]}}, {{$data["fri"]}}, {{$data["sat"]}}]
-                }]
+                },           
+                ]
             }, 
 
             // Configuration options go here
-            options: {}
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
         });
 
     </script>

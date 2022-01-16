@@ -15,15 +15,8 @@ class DashboardController extends Controller
             "thu" => 80000,
             "fri" => 140000,
             "sat" => 200000,
-        ];
 
-        return view("dashboard", ["data" => $week]);
-
-        
-    }
-    
-    public function index2(){
-        $month = [
+            //month
             "jan" => 800000,
             "feb" => 700000,
             "mar" => 1000000,
@@ -38,7 +31,9 @@ class DashboardController extends Controller
             "dec" => 1800000,
         ];
 
-        return view("dashboard", ["data2" => $month]);
+        return view("dashboard", ["data" => $week]);
+
+        
     }
-    
+        
 }
